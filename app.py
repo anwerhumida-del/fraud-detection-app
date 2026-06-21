@@ -1,11 +1,16 @@
 import gradio as gr
-import os
+from tensorflow.keras.models import load_model
+import joblib
 
-def test():
-    return "Fraud Detection App Working Successfully"
+model = load_model("fraud_detection_model.keras")
+scaler = joblib.load("scaler.pkl")
+encoder = joblib.load("label_encoder.pkl")
+
+def check():
+    return f"Model Loaded Successfully | Classes: {list(encoder.classes_)}"
 
 demo = gr.Interface(
-    fn=test,
+    fn=check,
     inputs=[],
     outputs="text",
     title="Fraud Detection System"
@@ -14,5 +19,5 @@ demo = gr.Interface(
 if __name__ == "__main__":
     demo.launch(
         server_name="0.0.0.0",
-        server_port=int(os.environ.get("PORT", 7860))
+        server_port=7860
     )
