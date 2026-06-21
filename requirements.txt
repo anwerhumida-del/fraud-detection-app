@@ -1,1 +1,6 @@
-gradio
+gradio==6.19.0
+tensorflow-cpu==2.20.0
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.6.1
+joblib==1.4.2
